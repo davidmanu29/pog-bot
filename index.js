@@ -2,6 +2,9 @@ const { Client, Events, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 const { token, guildId } = require('./config.json');
+const ffmpegPath = require('ffmpeg-static');
+
+const QueueManager = require('./queue/queueManager');
 
 const client = new Client({
   intents: [
@@ -9,6 +12,8 @@ const client = new Client({
     GatewayIntentBits.GuildVoiceStates
   ]
 });
+
+const queueManager = new QueueManager();
 
 client.commands = new Collection();
 
@@ -49,7 +54,7 @@ client.on(Events.InteractionCreate, async interaction => {
   if (!command) return;
 
   try {
-    await command.execute(interaction);
+    await command.execute(interaction, queueManager);
   } catch (error) {
     console.error(error);
     await interaction.reply({ content: 'Error client.on', ephemeral: true });

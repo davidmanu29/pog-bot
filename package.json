@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.17.3"
+    "@discordjs/voice": "^0.18.0",
+    "@distube/ytdl-core": "^4.15.9",
+    "discord.js": "^14.17.3",
+    "ffmpeg-static": "^5.2.0"
   }
 }
