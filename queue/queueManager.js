@@ -79,7 +79,11 @@ const {
       try {
         await entersState(queueData.connection, VoiceConnectionStatus.Ready, 5000);
   
-        const stream = ytdl(nextUrl, { filter: 'audioonly' });
+        const stream = ytdl(nextUrl, { 
+            filter: 'audioonly',
+            dlChunkSize: 0,
+            highWaterMark: 1 << 25,
+        });
         const resource = createAudioResource(stream, {
           inputType: StreamType.Arbitrary,
         });
