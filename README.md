@@ -1,2 +1,2 @@
 # pog-bot
-Discord bot for playing music and other activities
+Discord bot for playing music
